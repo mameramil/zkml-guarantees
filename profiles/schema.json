@@ -1,0 +1,38 @@
+﻿# zkml-guarantees
+
+Reproducible evaluation artifact for analyzing cryptographic guarantees of verifiable LLM inference systems (zkLLM, zkGPT, NanoZK, EZKL).
+
+Includes:
+- Machine-readable security profiles
+- Negative tests for model-substitution attacks
+- Cost harness for binding modes
+- Small controlled models for end-to-end experiments
+
+## Structure
+See Chapter 8 of the thesis for the full design.
+
+## Quick start
+\\\ash
+make all
+\\\
+"@ | Out-File -FilePath README.md -Encoding utf8
+
+# Schema de perfiles
+@"
+{
+  "": "http://json-schema.org/draft-07/schema#",
+  "title": "Security Profile",
+  "type": "object",
+  "properties": {
+    "system": { "type": "string" },
+    "version": { "type": "object" },
+    "configuration": { "type": "object" },
+    "statement": { "type": "array" },
+    "witness": { "type": "array" },
+    "setup": { "type": "object" },
+    "assumptions": { "type": "array" },
+    "guarantee": { "type": "object" },
+    "evidence": { "type": "object" },
+    "tests": { "type": "array" }
+  }
+}

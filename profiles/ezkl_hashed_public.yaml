@@ -1,0 +1,21 @@
+﻿system: ezkl
+version: {repo: zkonduit/ezkl, commit: e196b11}
+configuration:
+  param_visibility: hashed/public
+  input_visibility: public
+  output_visibility: public
+  commitment: kzg
+  curve: bn254
+statement: [input_tensor, output_tensor, poseidon(W), vk]
+witness: [W, advice]
+setup: {type: trusted_srs, source: tbd}
+assumptions: [kzg_q_type, poseidon_cr, rom, circuit_correctness]
+guarantee:
+  binding: {level: B2, requires: [pin_hash, pin_vk]}
+  scope: {level: graph}
+  fidelity: {level: unknown, test: e4_determinacy}
+  privacy: {level: Z2, leaks: [architecture, deterministic_hash]}
+evidence:
+  binding: I
+  privacy: I
+tests: [e1_binding_cost, e2a_fresh_commitment, e2c_descriptor, e2d_transcript]
