@@ -1,0 +1,15 @@
+﻿system: ezkl
+version: {repo: zkonduit/ezkl, commit: e196b11}
+configuration_space:
+  param_visibility: [private, public, fixed, hashed/public, hashed/private, polycommit]
+  commitment: kzg
+  curve: bn254
+profiles:
+  private: {binding: B0, privacy: Z2}
+  public: {binding: B2, privacy: Z0}
+  fixed: {binding: "B2 if vk pinned (whole descriptor)", privacy: "deterministic vk commitments"}
+  hashed/public: {binding: "B2 if hash pinned", privacy: "deterministic Poseidon digest"}
+  polycommit: {binding: "B2 if commitment compared externally", privacy: "unblinded advice"}
+setup: {type: trusted_srs}
+assumptions: [kzg_q_type_bn254, poseidon_cr, rom, circuit_correctness]
+evidence: {visibility_semantics: I, polycommit_unblinded: I, soundness_llm: "?"}

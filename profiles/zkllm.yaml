@@ -1,0 +1,14 @@
+﻿system: zkllm
+paper: {venue: "ACM CCS 2024", arxiv: "2404.16109"}
+version: {repo: jvhs0706/zkllm-ccs2024, commit: 993311e}
+configuration: {curve: bls12_381, commitment: hyrax, scale: 2^16, interactive: true}
+statement: [prompt (encoding unspecified), output y (encoding unspecified), cm_W, pp]
+witness: [W, commitment_randomness, intermediate_tensors]
+setup: {paper: transparent, code: "generators = random multiples of base point"}
+assumptions: [dlog_bls12_381, sumcheck_soundness, schwartz_zippel]
+guarantee:
+  binding: {paper: B2, code: "not established vs. ppgen party"}
+  scope: {level: S3, notes: "embedding and LM head not described"}
+  fidelity: {level: unknown, empirical: "dPPL 0.008-0.09 on C4"}
+  privacy: {paper: Z1, code: "weight commitments not blinded"}
+evidence: {completeness: P, soundness: S, zk: S, binding_code: "I!", hiding_code: "I!"}

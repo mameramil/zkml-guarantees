@@ -1,0 +1,14 @@
+﻿system: nanozk
+paper: {venue: "ICICS 2026", arxiv: "2603.18046v2"}
+version: {code: "not located"}
+configuration: {curve: pallas, proof_system: halo2_ipa, luts: 16-bit, layerwise: true}
+statement: [c_W, B_prev, B_next, chain_digest, c_0, y]
+witness: [W_l, merkle_paths, h_l, r_l]
+setup: {type: transparent}
+assumptions: [dlog_pallas, sha256_cr, merkle_hash_cr, rom]
+guarantee:
+  binding: {paper: "B2 for whole model (mix-and-match prevented)", code: tbd}
+  scope: {level: S3, notes: "token IDs to LM head; no decoding"}
+  fidelity: {level: unknown, empirical: "dPPL < 1e-4"}
+  privacy: {paper: Z2, leaks: [architecture, "c_W deterministic unless salted"]}
+evidence: {soundness: S, zk: S, partial_audit: S, binding_code: "?"}

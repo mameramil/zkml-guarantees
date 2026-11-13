@@ -1,0 +1,14 @@
+﻿system: zkgpt
+paper: {venue: "USENIX Security 2025", eprint: "2025/1184"}
+version: {artifact: "zenodo 14727819", inspected: false}
+configuration: {curve: bn254, commitment: hyrax, lookup: lasso, quantisation: 16-bit, fiat_shamir: true}
+statement: [input_embedding, output y, cm_W]
+witness: [W, intermediates, lookup_queries]
+setup: {type: transparent}
+assumptions: [dlog_bn254 (~100 bits), gkr_soundness, lasso_soundness, rom]
+guarantee:
+  binding: {paper: B2, code: tbd}
+  scope: {level: S3, notes: "starts from public embedding; tokeniser not bound"}
+  fidelity: {level: unknown, empirical: "dPPL 0.2 / 0.4 / 0.3 (WikiText-2 / PTB / LAMBADA)"}
+  privacy: {paper: "claimed (masking polynomials)", code: tbd}
+evidence: {completeness: S, soundness: S, zk: C, binding_code: "?"}
